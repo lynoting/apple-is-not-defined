@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Terminal from 'terminal-in-react';
+import { searchMsg } from './helpers';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="l-terminalwrapper">
+      <div className="l-terminalwrapper__inner">
+      <Terminal
+      color='white'
+      backgroundColor='transparent'
+      barColor='black'
+      style={{ fontWeight: "bold", fontSize: "1em" }}
+      commands={{
+        'open-google': () => window.open('https://www.google.com/', '_blank'),
+        popup: () => alert('Terminal in React')
+      }}
+      commandPassThrough={(cmd,print) => {
+        print(searchMsg(cmd[0]));
+      }}
+      msg='Tap screen, click screen or input some command'
+    />
+
+      </div>
+  </div>
+
   );
 }
 

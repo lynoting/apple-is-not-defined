@@ -1,0 +1,230 @@
+/*
+🌟 common mixins
+*/
+/*
+convert line-height & letter-spacing px values into relative value.
+px-based values can be extracted from Abstract. Always use this to define line-height & letter-spacing
+If cutLineSpace=true, the spacing the top of first-line & the bottom of last-line caused by line-height will be killed.
+--------------------------------------------------------- */
+@mixin u-fz($fontSizePx: false, $lineHeightPx: false, $letterSpacingPx: false, $cutLineSpace: false) {
+  @if ($fontSizePx) {
+    /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+    font-size: $fontSizePx + px;
+  }
+
+  @if ($lineHeightPx) {
+    /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+    line-height: ($lineHeightPx / $fontSizePx);
+  }
+
+  @if ($letterSpacingPx) {
+    /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+    letter-spacing: ($letterSpacingPx / $fontSizePx) + em;
+  }
+
+  @if ($cutLineSpace) {
+    &:before,
+    &:after {
+      display: block;
+      overflow: hidden;
+      content: '';
+    }
+
+    $_marginVal: ($lineHeightPx - $fontSizePx) * -0.5;
+
+    &:before {
+      margin-bottom: $_marginVal + px;
+    }
+    &:after {
+      margin-top: $_marginVal + px;
+    }
+  }
+}
+/*
+see https://tech.recruit-mp.co.jp/front-end/tips-ellipsis/
+--------------------------------------------------------- */
+@mixin ellipsisMultiline($fontSizePx, $lineHeightPx, $linesToShow: 2, $containerBgColor: #fff) {
+  $lineHeightComputed: $lineHeightPx / $fontSizePx;
+
+  overflow: hidden;
+  > * {
+    position: relative;
+    height: $fontSizePx * $lineHeightComputed * $linesToShow * 1px;
+    &:before,
+    &:after {
+      position: absolute;
+      background-color: $containerBgColor;
+    }
+    &:before {
+      top: ($fontSizePx * $lineHeightComputed * ($linesToShow - 1)) * 1px;
+      right: 0;
+      padding-right: 4px;
+      content: '...';
+    }
+    &:after {
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+  }
+}
+
+@mixin u-fw-b {
+  /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+  font-weight: 600;
+}
+
+@mixin u-fw-n {
+  /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+  font-weight: 300;
+}
+
+@mixin u-ff-number {
+  /* stylelint-disable-next-line 4dd/aeonmoneysite-custom-rules */
+  font-family: $FONTFAMILY-NUMBER;
+}
+/* use when you want to separate behavior between touch devices & mouse devices
+--------------------------------------------------------- */
+@mixin device-desktop() {
+  /* stylelint-disable-next-line selector-no-qualifying-type, selector-class-pattern */
+  body.is-pc & {
+    @content;
+  }
+}
+@mixin device-touch() {
+  /* stylelint-disable-next-line selector-no-qualifying-type, selector-class-pattern */
+  body:not(.is-pc) & {
+    @content;
+  }
+}
+/* Use this mixin when you make hover behavior
+--------------------------------------------------------- */
+@mixin hover() {
+  @include device-desktop() {
+    &:hover,
+    &:focus {
+      @content;
+    }
+  }
+  @include device-touch() {
+    &:active {
+      @content;
+    }
+  }
+}
+/* clearfix
+--------------------------------------------------------- */
+@mixin clearfix {
+  &:after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+/* make area that keep the aspect-ratio of area. This should be used with background-image
+--------------------------------------------------------- */
+@mixin aspectRatio($width: 1, $height: 1) {
+  position: relative;
+  &:before {
+    display: block;
+    padding-bottom: ($height / $width) * 100%;
+    content: '';
+  }
+}
+/* ellipsis with
+--------------------------------------------------------- */
+@mixin ellipsisInline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* scrollable area - $direction: h(horizontal scroll) | v(vertical scroll)
+--------------------------------------------------------- */
+@mixin scrollableArea($direction: h) {
+  -webkit-overflow-scrolling: touch;
+  @if ($direction == h) {
+    overflow-x: auto;
+    overflow-y: hidden;
+  } @else {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+/*
+🌟 respionsive mixins
+*/
+/* media query mixins. Please write SP first, as much as possible.
+This mean that please use pc() as much as possible.
+
+.foo {
+  @include pc {
+
+  }
+}
+
+--------------------------------------------------------- */
+
+@mixin pc() {
+  @media (min-width: $WIDTH-XS + 1px) {
+    @content;
+  }
+}
+
+@mixin sp() {
+  @media (max-width: $WIDTH-XS) {
+    @content;
+  }
+}
+/*
+🌟 form mixins
+*/
+/* placeholder
+--------------------------------------------------------- */
+@mixin placeholderColor($color: #999) {
+  /* stylelint-disable-next-line selector-no-vendor-prefix */
+  &::-webkit-input-placeholder {
+    //Google Chrome, Safari, Opera 15+, Android, iOS
+    color: $color;
+    -webkit-text-fill-color: $color;
+    // opacity: 0.3;
+  }
+  /* stylelint-disable-next-line selector-no-vendor-prefix */
+  &::-moz-placeholder {
+    //Firefox 19+
+    color: $color;
+    -webkit-text-fill-color: $color;
+    opacity: 1;
+  }
+  /* stylelint-disable-next-line selector-no-vendor-prefix */
+  &:-ms-input-placeholder {
+    //IE 10+
+    color: $color;
+    -webkit-text-fill-color: $color;
+    // opacity: 0.1;
+  }
+  &:placeholder-shown {
+    color: $color;
+    -webkit-text-fill-color: $color;
+    // opacity: 0.3;
+  }
+}
+
+@mixin marginLeftWithEndLine($margin: 16px, $lineColor: rgb(237, 237, 237)) {
+  position: relative;
+  margin-left: $margin;
+
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -$margin;
+    width: 1px;
+    content: '';
+    background-color: $lineColor;
+  }
+}
+
+@mixin imageWithBorderAndRadius() {
+  border: 1px solid $COLOR-GRY-LIGHT;
+  border-radius: 4px;
+}
