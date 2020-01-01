@@ -13,6 +13,8 @@
 
   &__inner {
     background-color: black;
+    width: 600px;
+    max-width: 100%;
     background-image: radial-gradient(
       rgba(0, 150, 0, 0.75), black 120%
     );

@@ -28,13 +28,15 @@ const options: Fuse.FuseOptions<CommandsDef> = {
 
 const fuse = new Fuse(COMMANDS, options);
 
-export const searchMsg = (query: string): string => {
+export const searchMsg = (query: string): string[] => {
   const searchResult = fuse.search(query) as ReturnDef[];
   console.log(searchResult);
+  let result = "";
   if (!searchResult[0] || searchResult[0].score > 0.3)  {
-    return COMMANDS.filter(v => v.title === '404')[0].contents;
+    result = COMMANDS.filter(v => v.title === '404')[0].contents;
   } else {
     console.log(searchResult)
-    return searchResult[0].item.contents
+    result = searchResult[0].item.contents
   }
+  return result.replace(/\n\s{4}/g, '//').split('//').map(v => v.trim());
 }

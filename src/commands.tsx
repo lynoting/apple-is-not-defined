@@ -1,15 +1,9 @@
 export const COMMANDS = [
   {
-    title: "apple",
-    contents: `‘Apple’ is not defined. Now it would perhaps be way more troublesome to think about myth or math.`,
-    tags: ['apple', 'fruit']
-  },
-  {
     title: "alphabet",
     contents: `Cannot read property ‘Alphabet’ of undefined. It has been long since we last talked there.
 
-    The meaning of them has been lost.
-    `,
+    The meaning of them has been lost.`,
     tags: ['character']
   },
   {
@@ -18,6 +12,11 @@ export const COMMANDS = [
 
     It is strongly recommended to keep eating something very quiet.`,
     tags: ['enter', 'login', 'ssh', 'authorization']
+  },
+  {
+    title: "apple",
+    contents: `‘Apple’ is not defined. Now it would perhaps be way more troublesome to think about myth or math.`,
+    tags: ['apple', 'fruit']
   },
   {
     title: 'hero',
