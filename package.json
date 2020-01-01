@@ -10,12 +10,13 @@
     "@types/node": "^13.1.2",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "classnames": "^2.2.6",
     "fuse.js": "^3.4.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
     "sanitize.css": "^11.0.0",
-    "terminal-in-react": "https://github.com/TakuyaAbe/terminal-in-react#fix/issue-66-edit-line-muliti-line",
+    "terminal-in-react": "https://github.com/takuyaabe/terminal-in-react#feat/apple-not-def-special-fixes",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@types/classnames": "^2.2.9",
     "customize-cra": "^0.9.1",
     "node-sass": "^4.13.0",
     "react-app-rewired": "^2.1.5"

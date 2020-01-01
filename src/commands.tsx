@@ -23,11 +23,11 @@ export const COMMANDS = [
     contents: `‘Hero’ must be the correct type. Prepare the value of more sophisticated type and try again.
 
     Describe cracked types, worn-out types, weeping types....
-    
-    
-    
-    
-    
+    .
+    .
+    .
+    .
+    .
     But it is still not the type.`,
     tags: ['hero', 'superman', 'ultraman', 'spiderman']
   },
@@ -39,14 +39,14 @@ export const COMMANDS = [
   {
     title: 'fatalerror',
     contents: `Fatal error. The monitor is looking at you.
-
+    
     It is aware that you have not been that talkative since the miserable bird has flown away last year.`,
     tags: ['fatal']
   },
   {
     title: 'unknown error',
     contents: `Unknown error occurred.
-
+    
     Anyway I’m glad to know I don’t know nobody knows what is known nor anybody know it’s unknown.`,
     tags: ['unknown']
   },
@@ -64,11 +64,11 @@ export const COMMANDS = [
   {
     title: 'hello world',
     contents: `Say ‘Hello World’ to me, right here, right away.
-
-
-
-
-
+    .
+    .
+    .
+    .
+    .
     I beg you.`,
     tags: ['hello', 'world', 'init']
   }

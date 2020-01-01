@@ -30,13 +30,11 @@ const fuse = new Fuse(COMMANDS, options);
 
 export const searchMsg = (query: string): string[] => {
   const searchResult = fuse.search(query) as ReturnDef[];
-  console.log(searchResult);
   let result = "";
   if (!searchResult[0] || searchResult[0].score > 0.3)  {
     result = COMMANDS.filter(v => v.title === '404')[0].contents;
   } else {
-    console.log(searchResult)
     result = searchResult[0].item.contents
   }
-  return result.replace(/\n\s{4}/g, '//').split('//').map(v => v.trim());
+  return result.replace(/\s{4}/g, '//').split('//').map(v => v.trim());
 }
