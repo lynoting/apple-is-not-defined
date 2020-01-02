@@ -34,7 +34,7 @@ export const searchMsg = (query: string): {
 } => {
   const searchResult = fuse.search(query) as (ReturnDef[]);
   let result: CommandsDef;
-  console.log(searchResult);
+  // console.log(searchResult);
   switch (true) {
     case !!query?.match(/^[A-Z]+$/):
       result = COMMANDS.filter(v => v.title === 'HELLO')[0];
