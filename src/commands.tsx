@@ -11,7 +11,9 @@ export const WAIT_ANNOTATION_SYMBOL = '|';
 
 export const LOGIN_ERROR_MSG = `You are not authorized. ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}Please try to enter again once you have got small enough.
 
-It is strongly recommended to keep eating something very quiet.`
+It is strongly recommended to keep eating something very quiet.`;
+
+export const HERO_ERROR_MSG = `It is still not the type.`;
 
 export const COMMANDS = [
   {
@@ -27,22 +29,16 @@ export const COMMANDS = [
     tags: ['enter', 'login', 'ssh', 'authorization'],
   },
   {
-    title: "apple",
+    title: "Apple",
     contents: `‘Apple’ is not defined. ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}Now it would perhaps be way more troublesome to think about myth or math.`,
     tags: ['apple', 'fruit']
   },
   {
     //
-    title: 'hero',
+    title: 'Hero',
     contents: `‘Hero’ must be the correct type. ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}Prepare the value of more sophisticated type and try again.
 
-    Describe cracked types, ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}worn-out types, ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}weeping types....
-    .
-    .
-    .
-    .
-    .
-    But it is still not the type.`,
+    Describe cracked types, ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}worn-out types, ${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}${WAIT_ANNOTATION_SYMBOL}weeping types....`,
     tags: ['hero', 'superman', 'ultraman', 'spiderman']
   },
   {

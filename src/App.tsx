@@ -1,5 +1,5 @@
 import React, {useRef, useState, SyntheticEvent} from 'react';
-import { COMMANDS, INTERVAL_CHAR, INTERVAL_LINE, INTERVAL_INPUT, WAIT_ANNOTATION_SYMBOL, LOGIN_ERROR_MSG } from './commands';
+import { COMMANDS, INTERVAL_CHAR, INTERVAL_LINE, INTERVAL_INPUT, WAIT_ANNOTATION_SYMBOL, LOGIN_ERROR_MSG, HERO_ERROR_MSG } from './commands';
 import classNames from 'classnames';
 
 // @ts-ignore
@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const [tapIndex, settapIndex] = useState(0);
   const [isShowing, setisShowing] = useState(false);
   const [isUserNamePrompt, setisUserNamePrompt] = useState(false);
+  const [isHeroTypeprompt, setisHeroTypeprompt] = useState(false);
 
   const handleClick = (event: SyntheticEvent<HTMLElement>) => {
     // @ts-ignore
@@ -34,6 +35,9 @@ const App: React.FC = () => {
 
       if (isUserNamePrompt) {
         targetStr = 'admin';
+      }
+      if (isHeroTypeprompt) {
+        targetStr = 'new Hero<strong>("AnpanMan")';
       }
       // 1文字ずつタイピング
       targetStr
@@ -53,7 +57,7 @@ const App: React.FC = () => {
           terminalRef.current.state.instances[0].instance.handleChange({ target: { value: targetStr }, key: 'Enter' });
           terminalRef.current.state.instances[0].instance
             .com.value = "";
-          if (isUserNamePrompt) {
+          if (isUserNamePrompt || isHeroTypeprompt) {
             return;
           }
           if (tapIndex === COMMANDS.length - 1) {
@@ -98,11 +102,19 @@ const App: React.FC = () => {
         terminalRef.current.state.instances[0].instance
           .com.blur();
         // @ts-ignore
-        let messages = searchMsg(cmd[0]);
+        let messages = searchMsg(cmd.join(' '));
         if (isUserNamePrompt) {
-          messages = splitContentStringIntoLineArrays(LOGIN_ERROR_MSG);
+          messages = {
+            title: 'loginFailed',
+            contents: splitContentStringIntoLineArrays(LOGIN_ERROR_MSG)
+          }
+        } else if (isHeroTypeprompt) {
+          messages = {
+            title: 'heroFailed',
+            contents: splitContentStringIntoLineArrays(HERO_ERROR_MSG)
+          }
         }
-        const msgPromises = messages.map((msg) => {
+        const msgPromises = messages.contents.map((msg) => {
           return () => new Promise<void>((resolve) => {
             print('');
             if (msg.length === 0) {
@@ -137,15 +149,28 @@ const App: React.FC = () => {
           return promise.then(waitForMs()).then(currentValue);
         },Promise.resolve())
         .then(() => {
-          setisShowing(false);
-          if (cmd[0] === 'login') {
+          if (messages.title === 'Hero') {
+            setisHeroTypeprompt(true);
+            setTimeout(() => {
+              terminalRef.current.state.instances[0].instance.setState({
+                'prompt': 'type:'
+              })  
+              setisShowing(false);
+
+            }, 200)
+          } else if (messages.title === 'login') {
             setisUserNamePrompt(true);
-            console.log(terminalRef.current.state.instances[0].instance)
-            terminalRef.current.state.instances[0].instance.setState({
-              'prompt': 'username:'
-            })
+            setTimeout(() => {
+              terminalRef.current.state.instances[0].instance.setState({
+                'prompt': 'username:'
+              })
+              setisShowing(false);
+
+            }, 200)
           } else {
             setisUserNamePrompt(false);
+            setisHeroTypeprompt(false);
+            setisShowing(false);
           }
         });     
 

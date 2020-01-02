@@ -10,7 +10,6 @@ type ReturnDef = {
 const options: Fuse.FuseOptions<CommandsDef> = {
   shouldSort: true,
   includeScore: true,
-  caseSensitive: true,
   keys: [{
     name: 'title',
     weight: 0.4
@@ -29,28 +28,35 @@ const options: Fuse.FuseOptions<CommandsDef> = {
 
 const fuse = new Fuse(COMMANDS, options);
 
-export const searchMsg = (query: string): string[] => {
+export const searchMsg = (query: string): {
+  title: string;
+  contents: string[]
+} => {
   const searchResult = fuse.search(query) as (ReturnDef[]);
-  let result = "";
+  let result: CommandsDef;
+  console.log(searchResult);
   switch (true) {
     case !!query?.match(/^[A-Z]+$/):
-      result = COMMANDS.filter(v => v.title === 'HELLO')[0].contents;
+      result = COMMANDS.filter(v => v.title === 'HELLO')[0];
       break;
     // @ts-ignore
     case !searchResult[0]:
     case searchResult[0].score > 0.2:
       if (Math.random() > 0.3) {
-        result = COMMANDS.filter(v => v.title === 'find')[0].contents;
+        result = COMMANDS.filter(v => v.title === 'find')[0];
       } else {
-        result = COMMANDS.filter(v => v.title === 'unknown error')[0].contents;
+        result = COMMANDS.filter(v => v.title === 'unknown error')[0];
       }
       break;
 
     default:
-      result = searchResult[0].item.contents
+      result = searchResult[0].item;
       break;
   }
-  return splitContentStringIntoLineArrays(result);
+  return {
+    ...result,
+    contents: splitContentStringIntoLineArrays(result.contents)
+  };
 }
 
 export const splitContentStringIntoLineArrays = (str: string) => str.replace(/\s{4}/g, '//').split('//').map(v => v.trim());
