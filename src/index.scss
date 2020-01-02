@@ -9,6 +9,7 @@ body, html, #root {
   background: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: Inconsolata, monospace;
 }
 
 .l-terminalwrapper {
@@ -29,7 +30,6 @@ body, html, #root {
     margin: 0;
     overflow: hidden;
     color: white;
-    font: 1.3rem Inconsolata, monospace;
     text-shadow: 0 0 5px #C8C8C8;
     &::before {
       content: "";
@@ -67,4 +67,19 @@ body, html, #root {
 }
 pre {
   margin: 0;
+}
+
+
+.m-link {
+  display: inline-block;
+  position: absolute;
+  top:16px;
+  left: 16px;
+  font-size: 12px;
+  z-index: 100;
+  color: #999;
+}
+
+a {
+  color: #999;
 }

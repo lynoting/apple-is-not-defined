@@ -34,7 +34,7 @@ export const searchMsg = (query: string): {
 } => {
   const searchResult = fuse.search(query) as (ReturnDef[]);
   let result: CommandsDef;
-  console.log(searchResult);
+  // console.log(searchResult);
   switch (true) {
     case !!query?.match(/^[A-Z]+$/):
       result = COMMANDS.filter(v => v.title === 'HELLO')[0];
@@ -45,7 +45,7 @@ export const searchMsg = (query: string): {
       if (Math.random() > 0.3) {
         result = COMMANDS.filter(v => v.title === 'find')[0];
       } else {
-        result = COMMANDS.filter(v => v.title === 'unknown error')[0];
+        result = COMMANDS.filter(v => v.title === 'tell me why')[0];
       }
       break;
 

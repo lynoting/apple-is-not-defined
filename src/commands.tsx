@@ -49,7 +49,7 @@ export const COMMANDS = [
   },
   {
     //
-    title: 'unknown error',
+    title: 'tell me why',
     contents: `Unknown error occurred.
     
     Anyway I’m glad to know I don’t know nobody knows what is known nor anybody know it’s unknown.${SPEED_ANNOTATION_SYMBOL}${INTERVAL_CHAR_FAST}`,

@@ -72,6 +72,9 @@ const App: React.FC = () => {
   
 
   return (
+    <>
+    <span className="m-link">The original version is <a href="https://note.com/lynoting/n/ne27c73709988" target="_blank" rel="noopener noreferrer">here</a>.</span>
+    
     <div className={
       classNames({
         'l-terminalwrapper': true,
@@ -87,7 +90,7 @@ const App: React.FC = () => {
       backgroundColor='#333'
       barColor='black'
       prompt='white'
-      style={{ fontWeight: "normal", fontSize: "1em" }}
+      style={{ fontWeight: "normal", fontSize: "1.3em" }}
       allowTabs={false}
       hideTopBar={true}
       commands={{
@@ -176,14 +179,13 @@ const App: React.FC = () => {
 
         
       }}
-      // @ts-ignore
-      description={{ 'type-text': 'Types a input text', /* disable default option */show: false, clear: false }}
 
       msg='Tap screen, click screen or input some command'
     />
 
       </div>
   </div>
+      </>
 
   );
 }
