@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/apple-is-not-defined/static/css/main.cc3758f4.chunk.css",
+    "main.js": "/apple-is-not-defined/static/js/main.56e89d65.chunk.js",
+    "main.js.map": "/apple-is-not-defined/static/js/main.56e89d65.chunk.js.map",
+    "runtime-main.js": "/apple-is-not-defined/static/js/runtime-main.c598a744.js",
+    "runtime-main.js.map": "/apple-is-not-defined/static/js/runtime-main.c598a744.js.map",
+    "static/js/2.aab7da2b.chunk.js": "/apple-is-not-defined/static/js/2.aab7da2b.chunk.js",
+    "static/js/2.aab7da2b.chunk.js.map": "/apple-is-not-defined/static/js/2.aab7da2b.chunk.js.map",
+    "index.html": "/apple-is-not-defined/index.html",
+    "precache-manifest.c11f784d01c5b46f69df3d33dcd5a9fd.js": "/apple-is-not-defined/precache-manifest.c11f784d01c5b46f69df3d33dcd5a9fd.js",
+    "service-worker.js": "/apple-is-not-defined/service-worker.js",
+    "static/css/main.cc3758f4.chunk.css.map": "/apple-is-not-defined/static/css/main.cc3758f4.chunk.css.map",
+    "static/js/2.aab7da2b.chunk.js.LICENSE": "/apple-is-not-defined/static/js/2.aab7da2b.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c598a744.js",
+    "static/js/2.aab7da2b.chunk.js",
+    "static/css/main.cc3758f4.chunk.css",
+    "static/js/main.56e89d65.chunk.js"
+  ]
+}
